@@ -1,0 +1,208 @@
+<xml xmlns="https://developers.google.com/blockly/xml" is_dbot="true" collection="false">
+   <variables>
+      <variable id="hR[N]99Q.YOmR]M9/-~b">MaxAcceptableLoss</variable>
+      <variable id="rHa]@!aRO*3.%vl=K+AZ">ExpectedProfit</variable>
+      <variable id="VwlfK{Gw@NPe6T!RWWWH">WinAmount</variable>
+      <variable id="K_Io!ZCzCs-|V[$u]F4u">InitialAmount</variable>
+      <variable id="runningProfit">RunningProfit</variable>
+      <variable id="currentStake">CurrentStake</variable>
+   </variables>
+   <block type="trade_definition" id="D{57fIw^u|Q@IunQr[Fu" deletable="false" x="0" y="60">
+      <statement name="TRADE_OPTIONS">
+         <block type="trade_definition_market" id="o8`]K[Hz$iVFOHm:6qqg" deletable="false" movable="false">
+            <field name="MARKET_LIST">synthetic_index</field>
+            <field name="SUBMARKET_LIST">random_index</field>
+            <field name="SYMBOL_LIST">1HZ25V</field>
+            <next>
+               <block type="trade_definition_tradetype" id="uO|p2wk^OMUmIi,#iI3U" deletable="false" movable="false">
+                  <field name="TRADETYPECAT_LIST">digits</field>
+                  <field name="TRADETYPE_LIST">overunder</field>
+                  <next>
+                     <block type="trade_definition_contracttype" id="g?0,vph!=Y-maMN7N}" deletable="false" movable="false">
+                        <field name="TYPE_LIST">both</field>
+                        <next>
+                           <block type="trade_definition_candleinterval" id="H@3qMjWU4A}gd:2CR:{V" deletable="false" movable="false">
+                              <field name="CANDLEINTERVAL_LIST">60</field>
+                              <next>
+                                 <block type="trade_definition_restartbuysell" id="Q2L]$Jl#c6ejUv-@Z]9/" deletable="false" movable="false">
+                                    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+                                    <next>
+                                       <block type="trade_definition_restartonerror" id="x^UHxb*_*F[J[p`P)4dI" deletable="false" movable="false">
+                                          <field name="RESTARTONERROR">TRUE</field>
+                                       </block>
+                                    </next>
+                                 </block>
+                              </next>
+                           </block>
+                        </next>
+                     </block>
+                  </next>
+               </block>
+            </next>
+         </block>
+      </statement>
+      <statement name="INITIALIZATION">
+         <block type="variables_set" id="*ZT*Q$j%Wg|p4yfp2z)y">
+            <field name="VAR" id="hR[N]99Q.YOmR]M9/-~b">MaxAcceptableLoss</field>
+            <value name="VALUE">
+               <block type="math_number" id="*yEAbM)%pn,$(GSnp;xo">
+                  <field name="NUM">30</field>
+               </block>
+            </value>
+            <next>
+               <block type="variables_set" id="3Gh@h=V;@5Y_]Yq[3i]$">
+                  <field name="VAR" id="rHa]@!aRO*3.%vl=K+AZ">ExpectedProfit</field>
+                  <value name="VALUE">
+                     <block type="math_number" id="hTn];N;TZZ,#75R2cQmv">
+                        <field name="NUM">15</field>
+                     </block>
+                  </value>
+                  <next>
+                     <block type="variables_set" id="v)ZJD)7D-(0D(ym-OIxm">
+                        <field name="VAR" id="VwlfK{Gw@NPe6T!RWWWH">WinAmount</field>
+                        <value name="VALUE">
+                           <block type="math_number" id="-].9P45nlzU.,T-|gJ4A">
+                              <field name="NUM">1</field>
+                           </block>
+                        </value>
+                        <next>
+                           <block type="variables_set" id="Urx)sH2acwB83jH]3Tf%">
+                              <field name="VAR" id="K_Io!ZCzCs-|V[$u]F4u">InitialAmount</field>
+                              <value name="VALUE">
+                                 <block type="math_number" id="8|xk*cL[8Q1cYx.O%|Lv">
+                                    <field name="NUM">1</field>
+                                 </block>
+                              </value>
+                              <next>
+                                 <block type="variables_set" id="initialize_running_profit">
+                                    <field name="VAR" id="runningProfit">RunningProfit</field>
+                                    <value name="VALUE">
+                                       <block type="math_number" id="initial_running_profit">
+                                          <field name="NUM">0</field>
+                                       </block>
+                                    </value>
+                                    <next>
+                                       <block type="variables_set" id="initialize_current_stake">
+                                          <field name="VAR" id="currentStake">CurrentStake</field>
+                                          <value name="VALUE">
+                                             <block type="variables_get" id="initial_stake_value">
+                                                <field name="VAR" id="K_Io!ZCzCs-|V[$u]F4u">InitialAmount</field>
+                                             </block>
+                                          </value>
+                                       </block>
+                                    </next>
+                                 </block>
+                              </next>
+                           </block>
+                        </next>
+                     </block>
+                  </next>
+               </block>
+            </next>
+         </block>
+      </statement>
+      <statement name="SUBMARKET">
+         <block type="trade_definition_tradeoptions" id=":kt0k)QJ9WKWou!Q7R{9">
+            <mutation xmlns="http://www.w3.org/1999/xhtml" has_first_barrier="false" has_second_barrier="false" has_prediction="true" />
+            <field name="DURATIONTYPE_LIST">t</field>
+            <value name="DURATION">
+               <shadow type="math_number_positive" id="YtN?_rKjNKD*ThHNMe*s">
+                  <field name="NUM">1</field>
+               </shadow>
+            </value>
+            <value name="AMOUNT">
+               <shadow type="math_number_positive" id="s:yxOOv8q#$*W[FUBhS=">
+                  <field name="NUM">1</field>
+               </shadow>
+            </value>
+            <value name="PREDICTION">
+               <shadow type="math_number_positive" id="PtL9)2F72jOLH+FCfMQE" inline="true">
+                  <field name="NUM">3</field>
+               </shadow>
+            </value>
+         </block>
+      </statement>
+      <block type="after_purchase" id="G(t)tv9h57bon=8*LG*c" x="770" y="60">
+         <statement name="AFTERPURCHASE_STACK">
+            <block type="check_result" id="check_trade_result">
+               <field name="CHECK_RESULT">win</field>
+               <next>
+                  <block type="variables_set" id="update_running_profit_win">
+                     <field name="VAR" id="runningProfit">RunningProfit</field>
+                     <value name="VALUE">
+                        <block type="math_arithmetic" id="calculate_profit">
+                           <field name="OP">ADD</field>
+                           <value name="A">
+                              <block type="variables_get" id="get_runningProfit">
+                                 <field name="VAR" id="runningProfit">RunningProfit</field>
+                              </block>
+                           </value>
+                           <value name="B">
+                              <block type="variables_get" id="get_WinAmount">
+                                 <field name="VAR" id="VwlfK{Gw@NPe6T!RWWWH">WinAmount</field>
+                              </block>
+                           </value>
+                        </block>
+                     </value>
+                     <next>
+                        <block type="variables_set" id="reset_stake_on_win">
+                           <field name="VAR" id="currentStake">CurrentStake</field>
+                           <value name="VALUE">
+                              <block type="variables_get" id="initial_stake_on_win">
+                                 <field name="VAR" id="K_Io!ZCzCs-|V[$u]F4u">InitialAmount</field>
+                              </block>
+                           </value>
+                        </block>
+                     </next>
+                  </block>
+               </next>
+            </block>
+            <next>
+               <block type="check_result" id="check_trade_result_loss">
+                  <field name="CHECK_RESULT">loss</field>
+                  <next>
+                     <block type="variables_set" id="update_running_profit_loss">
+                        <field name="VAR" id="runningProfit">RunningProfit</field>
+                        <value name="VALUE">
+                           <block type="math_arithmetic" id="subtract_loss">
+                              <field name="OP">MINUS</field>
+                              <value name="A">
+                                 <block type="variables_get" id="get_runningProfit_on_loss">
+                                    <field name="VAR" id="runningProfit">RunningProfit</field>
+                                 </block>
+                              </value>
+                              <value name="B">
+                                 <block type="variables_get" id="current_stake_loss">
+                                    <field name="VAR" id="currentStake">CurrentStake</field>
+                                 </block>
+                              </value>
+                           </block>
+                        </value>
+                        <next>
+                           <block type="variables_set" id="double_stake_loss">
+                              <field name="VAR" id="currentStake">CurrentStake</field>
+                              <value name="VALUE">
+                                 <block type="math_arithmetic" id="stake_doubling">
+                                    <field name="OP">MULTIPLY</field>
+                                    <value name="A">
+                                       <block type="variables_get" id="current_stake_before_doubling">
+                                          <field name="VAR" id="currentStake">CurrentStake</field>
+                                       </block>
+                                    </value>
+                                    <value name="B">
+                                       <block type="math_number" id="doubling_factor">
+                                          <field name="NUM">2</field>
+                                       </block>
+                                    </value>
+                                 </block>
+                              </value>
+                           </block>
+                        </next>
+                     </block>
+                  </next>
+               </block>
+            </next>
+         </statement>
+      </block>
+   </block>
+</xml>
